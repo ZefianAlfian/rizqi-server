@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "src/app.js",
   "license": "MIT",
+"scripts":{
+"start": "node ."
+},
   "dependencies": {
     "@adiwajshing/baileys": "git+https://github.com/adiwajshing/Baileys.git",
     "@discordjs/collection": "^0.1.6",
