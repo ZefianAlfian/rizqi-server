@@ -21,8 +21,8 @@ module.exports = {
         `Gunakan format seperti ini : /login username|password\n\nContoh : /login 00873628|YWHPTS`
       );
     }
-    const username = args.split("|")[0];
-    const password = args.split("|")[1];
+    const username = args.join``.split("|")[0];
+    const password = args.join``.split("|")[1];
 
     console.log(username, password);
   },
