@@ -1,5 +1,3 @@
-const { MessageType } = require("@adiwajshing/baileys");
-
 module.exports = {
   name: "eval",
   aliases: ["e"],

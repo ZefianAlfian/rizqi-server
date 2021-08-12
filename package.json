@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "main": "src/app.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "engines": {
+    "node": "14.x.x"
+  },
   "dependencies": {
     "@adiwajshing/baileys": "git+https://github.com/adiwajshing/Baileys.git",
     "@discordjs/collection": "^0.1.6",
     "awesome-phonenumber": "^2.55.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
     "child_process": "^1.0.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -14,6 +22,7 @@
     "file-type": "^16.5.3",
     "fs": "0.0.1-security",
     "humanize-duration": "^3.27.0",
+    "monk": "^7.3.4",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.6.3",
     "path": "^0.12.7",

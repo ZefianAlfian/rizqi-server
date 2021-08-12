@@ -34,6 +34,6 @@ module.exports = async ({ conn }) => {
 
   fs.readdirSync(path.join(__dirname + "/events")).map((items) => {
     require(`./events/${items}`)(conn);
-    Logger.info("✌️ Events loaded");
+    Logger.info(`✌️ Events ${items} loaded`);
   });
 };

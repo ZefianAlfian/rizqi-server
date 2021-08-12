@@ -44,9 +44,9 @@ module.exports = {
         let categori = i.name;
         let listFeature = i.value.split(",");
         teks += `Kategori: ${i.name}\n`;
-        teks += `${listFeature.join(",\n")}`;
+        teks += `${listFeature.join("\n")}\n`;
       });
-      teks += `\nUse ${prefix}help followed by a command name to get more additional information on a command. For example: ${prefix}help ping.`;
+      teks += `\nUse ${prefix}help followed by a command name to get more additional information on a command. For example: ${prefix}help lihatsemuakelas.`;
       conn.reply(m.chat, teks, m);
     } else {
       const command =

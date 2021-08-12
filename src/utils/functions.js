@@ -1,3 +1,7 @@
+const axios = require("axios");
+const cheerio = require("cheerio");
+const baseURL = "http://elearning2122.hayunmtsn1kotim.my.id/";
+
 function addMetadata(packname, author) {
   if (!packname) packname = "Rizqi";
   if (!author) author = "a.k.a ZefianAlfian";
@@ -41,6 +45,47 @@ function addMetadata(packname, author) {
   );
 }
 
+//Function E-Leaning
+
+const getSession = async (username, password, ajaran = "2021") => {
+  const data = await axios.post(
+    `${baseURL}login/do_login`,
+    `username=${username}&password=${password}&ajaran=${ajaran}`
+  );
+
+  const obj = {
+    cookie: `${data.headers["set-cookie"][0].split(";")[0]}`,
+    path: `${baseURL}${data.data}`,
+  };
+  return obj;
+};
+
+const cekNotif = async (session) => {
+  const data = await axios({
+    method: "POST",
+    url: session.path + "/cheknotif",
+    headers: {
+      cookie: session.cookie,
+    },
+  });
+
+  return data;
+};
+
+const lihatSemuaKelas = async (session) => {
+  const data = await axios({
+    method: "POST",
+    url: session.path + "master/grid_kelas",
+    headers: {
+      cookie: session.cookie,
+    },
+  });
+  return data;
+};
+
 module.exports = {
   addMetadata,
+  lihatSemuaKelas,
+  cekNotif,
+  getSession,
 };
