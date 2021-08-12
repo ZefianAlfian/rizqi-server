@@ -18,12 +18,13 @@ module.exports = {
     if (!args.length || args.length > 1) {
       return conn.reply(
         m.chat,
-        `Gunakan format seperti ini : /login username|password\n\nContoh : /login 00873628|YWHPTS`
+        `Gunakan format seperti ini : /login username|password|ajaran\n\nContoh : /login 00873628|YWHPTS|2021`
       );
     }
     const username = args.join``.split("|")[0];
     const password = args.join``.split("|")[1];
-
-    console.log(username, password);
+    console.log(username);
+    console.log(password);
+    // insertNewUser(m.sender, username, password)
   },
 };
