@@ -13,7 +13,7 @@ const findOne = (obj) =>
 
 const insertNewUser = (nomor, username, password, ajaran = "2021") =>
   new Promise((resolve, reject) => {
-    db.insert(obj)
+    db.insert({ nomor, username, password, ajaran })
       .then((doc) => {
         resolve(doc);
       })

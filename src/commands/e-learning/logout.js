@@ -19,7 +19,10 @@ module.exports = {
     }
     findOneAndDelete({ nomor: m.sender })
       .then((_) => {
-        conn.reply(m.chat, "Berhasil logout");
+        conn.reply(
+          m.chat,
+          "Berhasil logout, semua data anda yang tersimpan di bot ini telah dihapus"
+        );
       })
       .catch((_) => {
         conn.reply(m.chat, "Gagal logout, silahkan contact admin");

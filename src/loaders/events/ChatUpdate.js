@@ -2,6 +2,7 @@ const prefix = require("../../config").prefix;
 const msgFilter = require("../../utils/msgFilter");
 const simple = require("../../baileys/Simple");
 const { Logger } = require("../logger");
+const { findOne } = require("../../utils/dbFunction");
 
 module.exports = (conn) => {
   conn.on("chat-update", async function (chatUpdate) {
@@ -33,6 +34,7 @@ module.exports = (conn) => {
     if (!command) command = conn.commands.get(conn.aliases.get(argv));
 
     if (command) {
+      await conn.chatRead(m.chat);
       m.isGroup
         ? Logger.info(
             `[ GC ] ${m.sender.split("@")[0]} or ${conn.getName(
@@ -44,6 +46,14 @@ module.exports = (conn) => {
               m.sender
             )} used command ${command.name}`
           );
+      if (command.login) {
+        if (!(await findOne({ nomor: m.sender }))) {
+          return conn.reply(
+            m.chat,
+            "Silahkan Login terlebih dahulu menggunakan command */login*"
+          );
+        }
+      }
       if (command.cooldown) {
         if (msgFilter.isFiltered(m.sender)) {
           conn.reply(
