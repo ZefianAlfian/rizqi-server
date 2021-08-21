@@ -1,8 +1,10 @@
+const axios = require("axios");
 const prefix = require("../../config").prefix;
 const msgFilter = require("../../utils/msgFilter");
 const simple = require("../../baileys/Simple");
 const { Logger } = require("../logger");
 const { findOne } = require("../../utils/dbFunction");
+const { getSession } = require("../../utils/functions");
 
 module.exports = (conn) => {
   conn.on("chat-update", async function (chatUpdate) {
@@ -33,6 +35,27 @@ module.exports = (conn) => {
     let command = conn.commands.get(argv);
     if (!command) command = conn.commands.get(conn.aliases.get(argv));
 
+    const listAbsenRespon =
+      mtype === "listResponseMessage" ? m.message.listResponseMessage : "";
+    if (listAbsenRespon) {
+      await conn.chatRead(m.chat);
+      const objUsers = await findOne({
+        nomor: listAbsenRespon.singleSelectReply.selectedRowId.split("|")[2],
+      });
+      const urlPelajaran = `https://elearning2122.hayunmtsn1kotim.my.id/studentkelas/absensi/${
+        listAbsenRespon.singleSelectReply.selectedRowId.split("|")[1]
+      }`;
+      const session = await getSession(
+        objUsers.username,
+        objUsers.password,
+        objUsers.ajaran
+      );
+      // axios
+      //   .get(urlPelajaran, { headers: { cookie: session.cookie } })
+      //   .then((res) => {
+      //   });
+      conn.reply(m.chat, "Berhasil absen");
+    }
     if (command) {
       await conn.chatRead(m.chat);
       m.isGroup

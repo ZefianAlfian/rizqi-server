@@ -10,7 +10,7 @@
     "node": "14.x.x"
   },
   "dependencies": {
-    "@adiwajshing/baileys": "git+https://github.com/adiwajshing/Baileys.git",
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "@discordjs/collection": "^0.1.6",
     "awesome-phonenumber": "^2.55.0",
     "axios": "^0.21.1",

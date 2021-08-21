@@ -4,8 +4,9 @@ module.exports = {
   description: "Run JavaScript Code",
 
   run: async (conn, m, args) => {
-    if (m.sender !== "6289630171792@s.whatsapp.net")
-      return conn.reply(m.chat, "Km bkn owner");
+    // if (m.sender !== "6289630171792@s.whatsapp.net")
+    //   return conn.reply(m.chat, "Km bkn owner");
+
     if (args.length < 1) return conn.reply(m.chat, "No Javascript Code", m);
     function clean(text) {
       if (typeof text === "string")
